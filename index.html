@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Una escena, tres decisiones y un personaje que responde con IA. Demo pública de la Academia Mágica Latinoamericana.">
+  <title>Entre líneas · Academia Mágica</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <div class="sky" aria-hidden="true"></div>
+  <header class="site-header"><a class="brand" href="./"><span class="crest" aria-hidden="true">✧</span><span>ACADEMIA MÁGICA<span class="brand-sub">LATINOAMERICANA</span></span></a><span class="edition">DEMO PÚBLICA <i></i> 3 DECISIONES</span></header>
+  <main id="main">
+    <section id="welcome" class="welcome" aria-labelledby="welcome-title">
+      <div class="intro"><span class="eyebrow">UNA HISTORIA QUE TE ESCUCHA</span><h1 id="welcome-title">Lo que decís<br>cambia la <em>historia.</em></h1><p class="lede">Una pequeña ventana a la Academia. Elegí una escena, conversá con un personaje y descubrí qué dejan tus decisiones.</p><div class="intro-notes"><span><b>01</b> Elegí un encuentro</span><span><b>02</b> Escribí con tu voz</span><span><b>03</b> Mirá qué cambia</span></div><div class="real-note"><span aria-hidden="true">✦</span><p>Las respuestas se generan con IA al conversar. Las decisiones y el dado definen la progresión de esta sesión.</p></div></div>
+      <div class="selection-panel"><div class="panel-heading"><span class="eyebrow">EL PRIMER PASO</span><h2>¿Dónde empieza tu historia?</h2><p>Encuentros breves con personajes originales adultos.</p></div><div id="catalog" class="catalog" aria-label="Escenarios disponibles"><p class="loading">Buscando una puerta a la Academia…</p></div><div id="challenge" class="challenge"></div><p id="setup-note" class="setup-note" hidden></p><button id="start" class="primary start-button" disabled>Entrar a la escena <span aria-hidden="true">↗</span></button><p class="small-note">Sin cuenta · unos minutos · sesión independiente</p></div>
+    </section>
+    <section id="session" class="session" aria-labelledby="scene-title" hidden>
+      <aside class="scene-sidebar"><button id="leave" class="text-button">← Salir de la escena</button><span class="eyebrow">TU ENCUENTRO</span><div id="character-mark" class="character-mark" aria-hidden="true">✧</div><h2 id="character-name"></h2><p id="character-house" class="character-house"></p><div class="rule"></div><h3 id="scene-title" tabindex="-1"></h3><p id="scene-place" class="scene-place"></p><div class="progress-heading"><span>EL RECORRIDO</span><span id="turn-label">0 / 3</span></div><div id="progress-dots" class="progress-dots" aria-label="Progreso"><i></i><i></i><i></i></div><dl class="stats"><div><dt>Vínculo de la sesión</dt><dd id="relationship">0</dd></div><div><dt>Experiencia</dt><dd id="xp">0 XP</dd></div><div><dt>Nivel</dt><dd id="level">1</dd></div></dl><p id="expiry" class="session-note"></p><p class="session-note">Este vínculo empieza de cero. No cambia ninguna partida de la aplicación.</p></aside>
+      <div class="story-panel"><div class="story-top"><span class="eyebrow">ENTRE LÍNEAS</span><span class="live-tag"><i></i> CONVERSACIÓN CON IA</span></div><div id="transcript" class="transcript" role="log" aria-label="Conversación de esta sesión" aria-live="polite" aria-relevant="additions"></div><div id="thinking" class="thinking" role="status" hidden><span class="pulse" aria-hidden="true">✦</span> El personaje está preparando su respuesta…</div><form id="turn-form" class="composer"><fieldset id="decision-fieldset"><legend id="stage-prompt">Elegí cómo actuar</legend><div id="decisions" class="decisions"></div></fieldset><label for="message">¿Qué le decís?</label><textarea id="message" rows="3" maxlength="600" required placeholder="Escribí tus palabras para el personaje…" aria-describedby="message-help counter"></textarea><div class="composer-bottom"><span id="counter">0 / 600</span><button id="send" class="primary" type="submit" disabled>Decir y continuar <span aria-hidden="true">→</span></button></div><p id="message-help" class="small-note left">Tu decisión define la acción. Tus palabras hacen que la respuesta sea tuya.</p></form><div id="ending" class="ending" hidden><span class="eyebrow">UNA PAUSA EN LA HISTORIA</span><h3>Tu encuentro dejó una huella.</h3><p id="ending-text"></p><button id="restart" class="primary">Volver al comienzo <span aria-hidden="true">↻</span></button></div></div>
+    </section>
+    <div id="notice" class="notice" role="status" tabindex="-1" hidden></div>
+  </main>
+  <footer><span class="footer-name">Una escena de la Academia Mágica Latinoamericana</span><p>Los mensajes se envían al proveedor de IA para responder durante la sesión. La demo no conserva transcripciones; los servicios de IA y alojamiento aplican sus propias políticas. Evitá compartir datos personales.</p><p>Contenido original adaptado para esta demo. El diálogo generado puede contener errores.</p></footer>
+</body>
+</html>

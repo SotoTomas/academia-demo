@@ -1,0 +1,32 @@
+# Copy only this workflow and output/public-demo files into an artifact-only repo.
+name: Publish compiled demo
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Stage only allowed compiled files
+        run: |
+          mkdir public
+          cp index.html app.js styles.css public-config.json .nojekyll public/
+          if grep -qRE 'sourceMappingURL|sourcesContent|OPENAI_API_KEY|OPENROUTER_API_KEY|TURNSTILE_SECRET_KEY|sk-[A-Za-z0-9_-]{15,}' public; then echo 'Public artifact rejected'; exit 1; fi
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: public
+      - uses: actions/deploy-pages@v4
+        id: deployment
