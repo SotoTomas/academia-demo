@@ -22,7 +22,12 @@ jobs:
       - name: Stage only allowed compiled files
         run: |
           mkdir public
-          cp index.html app.js styles.css public-config.json .nojekyll caio.png arami.png hornero.png yaguarete.png public/
+          cp index.html app.js styles.css public-config.json .nojekyll hornero.png yaguarete.png public/
+          for character in caio arami; do
+            for mood in neutral happy sad angry surprised thoughtful determined embarrassed; do
+              cp "$character-$mood.webp" public/
+            done
+          done
           if grep -qRE --include='*.js' --include='*.json' --include='*.html' --include='*.css' 'sourceMappingURL|sourcesContent|OPENAI_API_KEY|OPENROUTER_API_KEY|TURNSTILE_SECRET_KEY|sk-[A-Za-z0-9_-]{15,}' public; then echo 'Public artifact rejected'; exit 1; fi
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
