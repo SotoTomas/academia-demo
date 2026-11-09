@@ -22,8 +22,8 @@ jobs:
       - name: Stage only allowed compiled files
         run: |
           mkdir public
-          cp index.html app.js styles.css public-config.json .nojekyll public/
-          if grep -qRE 'sourceMappingURL|sourcesContent|OPENAI_API_KEY|OPENROUTER_API_KEY|TURNSTILE_SECRET_KEY|sk-[A-Za-z0-9_-]{15,}' public; then echo 'Public artifact rejected'; exit 1; fi
+          cp index.html app.js styles.css public-config.json .nojekyll caio.png arami.png hornero.png yaguarete.png public/
+          if grep -qRE --include='*.js' --include='*.json' --include='*.html' --include='*.css' 'sourceMappingURL|sourcesContent|OPENAI_API_KEY|OPENROUTER_API_KEY|TURNSTILE_SECRET_KEY|sk-[A-Za-z0-9_-]{15,}' public; then echo 'Public artifact rejected'; exit 1; fi
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:
